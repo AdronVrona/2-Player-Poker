@@ -26,7 +26,7 @@ public class Game {
 	
 	boolean turn_order = true;
 	
-	Scanner myObj = new Scanner(System.in);
+	static Scanner myObj = new Scanner(System.in);
 	
 	public ArrayList<Player> players_in = new ArrayList<Player>();
 	
@@ -53,8 +53,25 @@ public class Game {
 	    
 	    game.game_init();
 	    
-	    game.game_loop(100);
-	   
+	    System.out.println("Welcome to DAYPoker! Please input the number of hands you would like to play:");
+	    
+	    String numHandsStr = myObj.nextLine();
+	    
+	    int numHands = 100; //default number hands is 100
+	    
+	    try {
+	    	
+	        numHands = Integer.parseInt(numHandsStr);
+	        
+	       
+	    } catch (NumberFormatException e) {
+	    	
+	        System.out.println("The number you entered was invalid-- a default value of 100 hands will be played");
+	        
+	    }
+	    
+	    game.game_loop(numHands);
+	    
 	    
 	}
 	
