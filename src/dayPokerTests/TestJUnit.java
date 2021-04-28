@@ -10,28 +10,10 @@ import java.util.Scanner;
 import org.junit.jupiter.api.Test;
 
 import dayPoker.Game;
+import dayPoker.ShowFigures;
 
 class TestJUnit {
 	
-//	boolean player_toact;
-//	
-//	boolean looped;
-//	
-//	boolean fold;
-//
-//	public Deck maindeck = new Deck();
-//	
-//	public Player player_one = new Player("Player 1");
-//	
-//	public Player player_two = new Player("Player 2");
-//	
-//	public Pot main_pot = new Pot();
-//	
-//	public CommunityCards table = new CommunityCards();
-//	
-//	 Scanner myObj = new Scanner(System.in);
-//	 
-//	 public ArrayList<Player> players_in = new ArrayList<Player>();
 	 
 	
 	@Test
@@ -90,6 +72,71 @@ class TestJUnit {
 		
 		assertEquals(2, game.main_pot.inPot);
 	}
+	
+	@Test
+	void check_check_and_more_checks() {
+		
+		// INPUTS: "check, check, check, check, check, check, check, check"
+		
+		Game game = new Game();
+		game.game_init();
+		game.preflop();
+		game.flop();
+		game.turn();
+		game.river();
+		
+		assertEquals(game.players_in.get(0) , game.player_one);
+	}
 
+	void check_check_and_more_checks_part_two() {
+		
+		// INPUTS: "check, check, check, check, check, check, check, check"
+		
+		Game game = new Game();
+		game.game_init();
+		game.preflop();
+		game.flop();
+		game.turn();
+		game.river();
+		
+		assertEquals(game.player_one.chip_stack , 102);
+	}
+
+	void check_fold_player_order() {
+		
+		// INPUTS: "check, fold"
+		
+		Game game = new Game();
+		game.game_init();
+		game.preflop();
+		
+		assertEquals(game.players_in.get(0) , game.player_one);
+		
+	}
+	
+	
+	@Test
+	void nonfacecard_print() {
+		
+		// INPUTS: "10 , Hearts"
+		
+		ShowFigures.GetFigures("Heart", "10");
+		
+		// Asserting no error is thrown/visual confirmation
+		
+		assertEquals(true,true);
+	}
+	
+	@Test
+	void facecard_print() {
+		
+		// INPUTS: "Jack , Spades"
+		
+		ShowFigures.GetFigures("Spade", "J");
+		
+		// Asserting no error is thrown/visual confirmation
+		
+		assertEquals(true,true);
+	}
 
 }
